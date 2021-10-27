@@ -94,7 +94,7 @@ impl CommandList {
                 longdoc,
                 Box::new(move |flavor: &Flavor, params: Vec<String>| -> String {
                     match flavor {
-                        Flavor::TEXT => f(params),
+                        Flavor::MARKDOWN => f(params),
                         Flavor::HTML => htmlify(&f(params)),
                     }
                 }),

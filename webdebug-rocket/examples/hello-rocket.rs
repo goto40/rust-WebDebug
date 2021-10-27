@@ -49,6 +49,14 @@ fn rocket() -> _ {
     )
     .unwrap();
 
+    webdebug::add_command(
+        "demo2",
+        "demo2 command",
+        "a simple demo command",
+        webdebug::CommandFunction::TextFn(Box::new(|_params:Vec<String>|{"This is a 🌶 demo".to_owned()})),
+    )
+    .unwrap();
+
     let config = rocket::config::Config {
         port: 3000,
         ..Default::default()
