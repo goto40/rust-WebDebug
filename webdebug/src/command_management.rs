@@ -26,10 +26,7 @@ impl Default for CommandList {
         ret.add_command(
             "help",
             "get help on commands",
-            r#"
-             - help: get a list of all commands
-             - help <cmd>: get specific help for one command
-            "#,
+            " - help: get a list of all commands\n - help <cmd>: get specific help for one command",
             CommandFunction::TextFn(Box::new(help)),
         )
         .unwrap();
@@ -51,7 +48,7 @@ fn help(params: Vec<String>) -> String {
         1 => {
             if obj.commands.contains_key(&params[0]) {
                 let cmd = &obj.commands[&params[0]];
-                format!("Documentation for command `{}`:\n\n**Brief**: {}\n\n**Details**:{}", params[0], cmd.doc, cmd.longdoc)    
+                format!("Documentation for command `{}`:\n\n**Brief**: {}\n\n**Details**:\n{}", params[0], cmd.doc, cmd.longdoc)    
             }
             else {
                 format!("Documentation for {} **not found**!", params[0])    
