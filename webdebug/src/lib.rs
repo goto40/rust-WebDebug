@@ -25,21 +25,20 @@ pub fn add_command(name: &str, doc: &str, longdoc: &str, command: CommandFunctio
     obj.add_command(name, doc, longdoc, command)
 }
 
-pub fn hello(flavor: &Flavor) -> String {
-    exec_command(flavor, "help", vec![])
-}
-
-pub fn htmlify(text_fn: &str) -> String {
-    markdown::to_html(text_fn)
-}
-
-
 pub fn exec_command(flavor: &Flavor, name: &str, params: Vec<String>) -> String {
     let obj = command_management::COMMAND_LIST.read().unwrap();
     match obj.commands.get(name) {
         Some(cmd) => (cmd.fun)(flavor, params),
         None => format!("command {} not found.", name),
     }
+}
+
+pub fn hello(flavor: &Flavor) -> String {
+    exec_command(flavor, "help", vec![])
+}
+
+pub fn htmlify(text_fn: &str) -> String {
+    markdown::to_html(text_fn)
 }
 
 #[cfg(test)]
